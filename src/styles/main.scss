@@ -1,0 +1,35 @@
+@import "stylesheet.css";
+
+:root {
+  --color-main: #3c3c3b;
+  --color-green: #95b03c;
+  --background-light: #F8F8F8;
+}
+
+*,
+::before,
+::after {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  transition: all 0.4s ease-in;
+}
+
+ol, ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-green);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
