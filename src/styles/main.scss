@@ -1,8 +1,9 @@
 @import "stylesheet.css";
 
 :root {
-  --color-main: #3c3c3b;
-  --color-green: #95b03c;
+  --color-green: #10b380;
+  --color-yellow-green: #95b03c;
+  --color-grey-blue: #2c3e50;
   --background-light: #F8F8F8;
 }
 
@@ -10,21 +11,27 @@
 ::before,
 ::after {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  transition: all 0.4s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 ol, ul {
-  padding-left: 0;
-  margin-bottom: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  color: #10b380;
 }
 
 a {
-  text-decoration: none !important;
+  color: var(--color-grey-blue);
+  text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: var(--color-green);
+  color: var(--color-yellow-green);
 }
 
 .fade-enter-active, .fade-leave-active {
