@@ -1,7 +1,5 @@
 <template>
   <div>
-    <AddTodo @add-todo="addTodo" />
-
     <section class="filter">
       <label>
         <span>Filter todos by status</span>
@@ -31,7 +29,7 @@
         @remove-todo="removeTodo"
     />
     <p v-else>No todos!</p>
-
+    <AddTodo @add-todo="addTodo" />
   </div>
 </template>
 
@@ -104,6 +102,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
@@ -128,7 +127,6 @@
   .filter {
     display: flex;
     width: 100%;
-    margin-bottom: 3rem;
   }
 
   .todos__counter {
