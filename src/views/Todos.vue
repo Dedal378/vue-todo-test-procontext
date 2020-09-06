@@ -1,23 +1,21 @@
 <template>
   <transition name="fade">
     <div>
-      <transition name="fade">
-        <section class="filter">
-          <label>
-            <span>Filter todos by status</span>
-            <select v-model="filter">
-              <option value="all">All</option>
-              <option value="completed">Completed</option>
-              <option value="not-completed">Not Completed</option>
-            </select>
-          </label>
+      <section class="filter">
+        <label>
+          <span>Filter todos by status</span>
+          <select v-model="filter">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="not-completed">Not Completed</option>
+          </select>
+        </label>
 
-          <label for="search">
-            <span>Find your note</span>
-            <input v-model.trim="search" id="search" type="text" placeholder="text here">
-          </label>
-        </section>
-      </transition>
+        <label for="search">
+          <span>Find your note</span>
+          <input v-model.trim="search" id="search" type="text" placeholder="text here">
+        </label>
+      </section>
 
       <div class="todos__counter">
         <span>All todos <strong>{{ todos.length }}</strong></span>
@@ -25,14 +23,13 @@
         <span>Pending todos <strong>{{ todos.filter(t => t.completed === false).length }}</strong></span>
       </div>
 
-      <transition name="fade">
-        <Loader v-if="loading" />
-        <TodoList
-            v-else-if="todos.length"
-            :todos="filteredTodos"
-            @remove-todo="removeTodo"
-        />
-        <p v-else>No todos!</p></transition>
+      <Loader v-if="loading" />
+      <TodoList
+          v-else-if="todos.length"
+          :todos="filteredTodos"
+          @remove-todo="removeTodo"
+      />
+      <p v-else>No todos!</p>
 
       <AddTodo @add-todo="addTodo" />
     </div>
@@ -43,12 +40,11 @@
   import TodoList from '@/components/TodoList';
   import AddTodo from '@/components/AddTodo';
   import Loader from '@/components/Loader';
-  import Filters from '@/components/Filters';
 
   export default {
     name: "Todos",
     components: {
-      TodoList, AddTodo, Loader, Filters
+      TodoList, AddTodo, Loader,
     },
     data () {
       return {
@@ -154,6 +150,7 @@
       flex-wrap: wrap;
     }
   }
+
   @media (max-width: 560px) {
     .todos__counter {
       flex-direction: column;
