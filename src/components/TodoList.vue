@@ -1,12 +1,14 @@
 <template>
-  <section>
-    <TodoItem
-        v-for="(todo, i) of todos"
-        :todo="todo"
-        :index="i"
-        @remove-todo="removeTodo"
-    />
-  </section>
+  <transition name="fade">
+    <section>
+      <TodoItem
+          v-for="(todo, i) of todos"
+          :todo="todo"
+          :index="i"
+          @remove-todo="removeTodo"
+      />
+    </section>
+  </transition>
 </template>
 
 <script>

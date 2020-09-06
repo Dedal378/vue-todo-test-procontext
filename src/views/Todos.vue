@@ -1,36 +1,42 @@
 <template>
-  <div>
-    <section class="filter">
-      <label>
-        <span>Filter todos by status</span>
-        <select v-model="filter">
-          <option value="all">All</option>
-          <option value="completed">Completed</option>
-          <option value="not-completed">Not Completed</option>
-        </select>
-      </label>
+  <transition name="fade">
+    <div>
+      <transition name="fade">
+        <section class="filter">
+          <label>
+            <span>Filter todos by status</span>
+            <select v-model="filter">
+              <option value="all">All</option>
+              <option value="completed">Completed</option>
+              <option value="not-completed">Not Completed</option>
+            </select>
+          </label>
 
-      <label for="search">
-        <span>Find your note</span>
-        <input v-model.trim="search" id="search" type="text" placeholder="text here">
-      </label>
-    </section>
+          <label for="search">
+            <span>Find your note</span>
+            <input v-model.trim="search" id="search" type="text" placeholder="text here">
+          </label>
+        </section>
+      </transition>
 
-    <div class="todos__counter">
-      <span>All todos <strong>{{ todos.length }}</strong></span>
-      <span>Completed todos <strong>{{ todos.filter(t => t.completed === true).length }}</strong></span>
-      <span>Pending todos <strong>{{ todos.filter(t => t.completed === false).length }}</strong></span>
+      <div class="todos__counter">
+        <span>All todos <strong>{{ todos.length }}</strong></span>
+        <span>Completed todos <strong>{{ todos.filter(t => t.completed === true).length }}</strong></span>
+        <span>Pending todos <strong>{{ todos.filter(t => t.completed === false).length }}</strong></span>
+      </div>
+
+      <transition name="fade">
+        <Loader v-if="loading" />
+        <TodoList
+            v-else-if="todos.length"
+            :todos="filteredTodos"
+            @remove-todo="removeTodo"
+        />
+        <p v-else>No todos!</p></transition>
+
+      <AddTodo @add-todo="addTodo" />
     </div>
-
-    <Loader v-if="loading" />
-    <TodoList
-        v-else-if="todos.length"
-        :todos="filteredTodos"
-        @remove-todo="removeTodo"
-    />
-    <p v-else>No todos!</p>
-    <AddTodo @add-todo="addTodo" />
-  </div>
+  </transition>
 </template>
 
 <script>

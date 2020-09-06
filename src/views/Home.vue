@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <p>Добро пожаловать в Приложение TODO APP.</p>
-    <p>Создайте или отредактируйте свою заметку, нажав кнопку внизу.</p>
-    <button class="btn">
-      <router-link class="open" to="/todos">TODO APP</router-link>
-    </button>
-  </div>
+  <transition name="fade">
+    <div>
+      <p>Добро пожаловать в Приложение TODO APP.</p>
+      <p>Создайте или отредактируйте свою заметку, нажав кнопку внизу.</p>
+      <button class="btn">
+        <router-link class="open" to="/todos">TODO APP</router-link>
+      </button>
+    </div>
+  </transition>
 </template>
 
 <script>
