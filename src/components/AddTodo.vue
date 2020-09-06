@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <label for="title">Card Title</label>
+    <label for="title"></label>
     <textarea id="title" v-model="title" rows="3"></textarea>
     <button type="submit">Create new card</button>
   </form>
@@ -35,10 +35,12 @@
   form {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    /*max-width: 55%;*/
+    //noinspection CssInvalidFunction
+    width: clamp(310px, 100vw, 65%);
     padding: 20px;
     margin-top: 2rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     border-radius: 7px;
     box-shadow: 0 1px 5px var(--color-shadow);
   }

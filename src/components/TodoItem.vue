@@ -1,22 +1,5 @@
 <template>
-  <!--    <label
-          :class="{ done: todo.completed }"
-          @change="todo.completed = !todo.completed"
-      >
-        <input
-            type="checkbox"
-        >
-        <strong> {{ index + 1 }} </strong>
-        {{ todo.title | upperCase }}
-      </label>
-      <button
-          class="button__delete"
-          @click="$emit('remove-todo', todo.id)"
-      >
-        &times;
-      </button>-->
-
-  <section class="card">
+  <section class="card" draggable="true">
     <div class="card-text">
       <div class="cover">
         <strong class="strong" :class="{'done': this.todo.completed}"> {{ index + 1 }} </strong>
@@ -96,60 +79,22 @@
 </script>
 
 <style scoped lang="scss">
-  /*  div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      min-width: 10rem;
-      min-height: 10rem;
-      padding: .5rem;
-      margin-bottom: 1rem;
-      color: var(--color-green);
-      border: 2px solid #e2e2e2;
-      border-radius: 7px;
-      box-shadow: 0 1px 5px var(--color-shadow);
-
-      &:hover {
-        color: var(--color-grey-blue);
-        cursor: pointer;
-      }
-
-      & label {
-        display: flex;
-        align-items: center;
-        margin-right: 0.5rem;
-        text-align: left;
-        cursor: pointer;
-
-        & input, strong {
-          margin-right: 1rem;
-        }
-      }
-    }
-
-    .button__delete {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: red;
-      color: #fff;
-      border-radius: 50%;
-      font-weight: bold;
-    }
-
-    .done {
-      text-decoration: line-through;
-    }*/
-
   .card {
-    margin: 0.5rem;
+    display: block;
+    margin: 1rem;
+    padding: 0.2rem;
     //noinspection CssInvalidFunction
-    max-width: clamp(300px, 100%, 370px);
+    /*max-width: clamp(300px, 100%, 370px);*/
+    width: 310px;
     text-align: left;
     background: #fff;
     border-radius: 25px;
     box-shadow: 0 5px 10px var(--color-shadow);
+
+    &:hover {
+      box-shadow: 0 15px 20px var(--color-shadow);
+      transform: scale(1.01);
+    }
   }
 
   .card h2 {
@@ -167,7 +112,6 @@
     background-image: url("https://m.media-amazon.com/images/S/aplus-media/vc/cab6b08a-dd8f-4534-b845-e33489e91240._CR75,0,300,300_PT0_SX300__.jpg");
     background-position: bottom center;
     background-size: cover;
-    /*opacity: 0.7;*/
 
     .strong {
       display: flex;

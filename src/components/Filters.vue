@@ -1,12 +1,18 @@
 <template>
-  <label>
-    <span>Status Filter</span>
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not Completed</option>
-    </select>
-  </label>
+  <div>
+    <label>
+      <span>Status Filter</span>
+      <select v-model="filter">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="not-completed">Not Completed</option>
+      </select>
+    </label>
+
+    <label for="search">Find your note
+      <input v-model.trim="search" id="search" type="text" placeholder="text here">
+    </label>
+  </div>
 </template>
 
 <script>
@@ -17,6 +23,9 @@
         type: String,
         default: 'all'
       },
+      search: {
+        type: String
+      }
     },
   }
 </script>

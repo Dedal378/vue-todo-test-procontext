@@ -1,7 +1,28 @@
 <template>
   <div>
     <AddTodo @add-todo="addTodo" />
-    <Filters :filter="filter" />
+
+    <section class="filter">
+      <label>
+        <span>Filter todos by status</span>
+        <select v-model="filter">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="not-completed">Not Completed</option>
+        </select>
+      </label>
+
+      <label for="search">
+        <span>Find your note</span>
+        <input v-model.trim="search" id="search" type="text" placeholder="text here">
+      </label>
+    </section>
+
+    <div class="todos__counter">
+      <span>All todos <strong>{{ todos.length }}</strong></span>
+      <span>Completed todos <strong>{{ todos.filter(t => t.completed === true).length }}</strong></span>
+      <span>Pending todos <strong>{{ todos.filter(t => t.completed === false).length }}</strong></span>
+    </div>
 
     <Loader v-if="loading" />
     <TodoList
@@ -30,6 +51,7 @@
         todos: [],
         loading: true,
         filter: 'all',
+        search: '',
       }
     },
     methods: {
@@ -52,16 +74,27 @@
     },
     computed: {
       filteredTodos () {
-        if(this.filter === 'all') {
-          return this.todos
+        let searchToLowerCase = this.search.toLowerCase();
+
+        if (this.filter === 'all') {
+          return this.todos.filter(todo => {
+              return todo.title.toLowerCase().indexOf(searchToLowerCase) > -1
+            }
+          )
         }
         if (this.filter === 'completed') {
-          return this.todos.filter(t => t.completed)
+          return this.todos.filter(t => t.completed).filter(todo => {
+              return todo.title.toLowerCase().indexOf(searchToLowerCase) > -1
+            }
+          )
         }
         if (this.filter === 'not-completed') {
-          return this.todos.filter(t => !t.completed)
+          return this.todos.filter(t => !t.completed).filter(todo => {
+              return todo.title.toLowerCase().indexOf(searchToLowerCase) > -1
+            }
+          )
         }
-      }
+      },
     },
   }
 </script>
@@ -76,5 +109,54 @@
 
   p {
     font-size: 3rem;
+  }
+
+  label {
+    width: 100%;
+    margin-bottom: 2rem;
+
+    & span {
+      margin: 0 10px;
+    }
+  }
+
+  input {
+
+    padding-left: 15px;
+  }
+
+  .filter {
+    display: flex;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .todos__counter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    span {
+      margin: 0 15px;
+
+      strong {
+        color: red;
+      }
+    }
+  }
+
+  @media (max-width: 740px) {
+    .filter {
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 560px) {
+    .todos__counter {
+      flex-direction: column;
+    }
+    .filter {
+      width: 300px;
+      text-align: center;
+    }
   }
 </style>

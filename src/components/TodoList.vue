@@ -21,6 +21,9 @@
       todos: {
         type: Array,
       },
+      todosFinder: {
+        type: Array,
+      }
     },
     methods: {
       removeTodo (id) {
@@ -33,7 +36,9 @@
 <style scoped lang="scss">
   section {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    padding: 1rem;
+    margin: 1rem;
+
   }
 </style>
