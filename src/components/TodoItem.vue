@@ -7,7 +7,11 @@
       </div>
 
       <div class="title-total">
-        <h2>{{ todo.title | upperCase }}</h2>
+        <h2 v-show="!isEditing">{{ todo.title | upperCase }}</h2>
+        <div v-show="isEditing" class="edit-form">
+          <textarea v-model="todo.title" rows="3"></textarea>
+          <button @click="hideEdit" type="button">save</button>
+        </div>
         <div class="actions">
           <div class="icon-status">
             <small>{{ statusTodo }}</small>
@@ -28,7 +32,7 @@
               </g>
             </svg>
           </div>
-          <div class="icon-status">
+          <div @click="showEdit" class="icon-status">
             <small>edit</small>
             <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" version="1.1" viewBox="0 0 32 32">
               <g transform="scale(2)">
@@ -54,19 +58,28 @@
       },
       index: Number,
     },
+    data () {
+      return {
+        isEditing: false,
+      }
+    },
     methods: {
       changedStatus () {
         return this.todo.completed = !this.todo.completed
       },
-      editTodo () {
-
+      showEdit () {
+        this.isEditing = true
+      },
+      hideEdit () {
+        this.isEditing = false
       }
     },
     computed: {
       statusTodo () {
         if (this.todo.completed) {
           return 'done'
-        } else {
+        }
+        else {
           return 'undone'
         }
       }
@@ -107,7 +120,7 @@
     overflow: auto;
     /*white-space: nowrap;*/
     text-overflow: ellipsis;
-        //noinspection CssInvalidFunction
+    //noinspection CssInvalidFunction
     font-size: clamp(0.5rem, 3vw, 1rem);
   }
 
@@ -130,6 +143,7 @@
       transform: rotate(-45deg);
       z-index: 0;
     }
+
     .strong {
       display: flex;
       align-items: center;
@@ -146,7 +160,7 @@
 
 
       &.done {
-        color: #ffffff;
+        color: #fff;
         background: red;
       }
     }
@@ -156,6 +170,18 @@
     display: grid;
     align-content: space-between;
     padding: 1em;
+  }
+
+  .edit-form {
+    text-align: end;
+
+    textarea {
+      padding: 5px;
+      color: var(--color-grey-blue);
+      text-transform: uppercase;
+      border-bottom: 1px var(--color-grey-blue);
+      border-right: 1px var(--color-grey-blue);
+    }
   }
 
   .card-text {
