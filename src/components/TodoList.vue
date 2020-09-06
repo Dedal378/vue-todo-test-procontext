@@ -1,14 +1,12 @@
 <template>
-  <div class="">
-    <ul>
-      <TodoItem
-          v-for="(todo, i) of todos"
-          :todo="todo"
-          :index="i"
-          @remove-todo="removeTodo"
-      />
-    </ul>
-  </div>
+  <section>
+    <TodoItem
+        v-for="(todo, i) of todos"
+        :todo="todo"
+        :index="i"
+        @remove-todo="removeTodo"
+    />
+  </section>
 </template>
 
 <script>
@@ -26,7 +24,6 @@
     },
     methods: {
       removeTodo (id) {
-        console.log(id)
         this.$emit('remove-todo', id)
       }
     },
@@ -34,5 +31,9 @@
 </script>
 
 <style scoped lang="scss">
-
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
 </style>

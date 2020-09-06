@@ -1,7 +1,8 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <input type="text" v-model="title">
-    <button type="submit">Create</button>
+    <label for="title">Card Title</label>
+    <textarea id="title" v-model="title" rows="3"></textarea>
+    <button type="submit">Create new card</button>
   </form>
 </template>
 
@@ -33,16 +34,20 @@
 <style scoped lang="scss">
   form {
     display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px var(--color-shadow);
   }
 
-  input {
-    width: 400px;
-  }
   button {
     cursor: pointer;
 
     &:hover {
-      filter: invert(80%);
+      filter: invert(85%);
     }
   }
 </style>

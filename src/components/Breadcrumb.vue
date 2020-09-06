@@ -19,14 +19,11 @@
   div {
     display: flex;
     flex-direction: row;
-    margin-bottom: 8rem;
+    justify-content: center;
   }
 
   .link-breadcrumb {
     margin-right: 1rem;
-    &:first-child {
-      margin-left: 3rem;
-    }
   }
 
   small {

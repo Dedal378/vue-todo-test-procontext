@@ -1,15 +1,17 @@
 @import "stylesheet.css";
+@import "css-reset.css";
 
 :root {
   --color-green: #10b380;
   --color-yellow-green: #95b03c;
   --color-grey-blue: #2c3e50;
+  --color-shadow: rgba(44, 62, 80, 0.5);
   --background-light: #F8F8F8;
 }
 
 *,
-::before,
-::after {
+* ::before,
+* ::after {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   transition: all 0.2s ease-in;
 }
@@ -21,7 +23,7 @@ ol, ul {
 }
 
 li {
-  color: #10b380;
+  color: var(--color-green);
 }
 
 a {

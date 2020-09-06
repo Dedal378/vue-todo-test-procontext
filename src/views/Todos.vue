@@ -1,15 +1,7 @@
 <template>
   <div>
-    <router-link to="/">Home</router-link>
-
     <AddTodo @add-todo="addTodo" />
-
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not Completed</option>
-    </select>
-    <hr>
+    <Filters :filter="filter" />
 
     <Loader v-if="loading" />
     <TodoList
@@ -26,11 +18,12 @@
   import TodoList from '@/components/TodoList';
   import AddTodo from '@/components/AddTodo';
   import Loader from '@/components/Loader';
+  import Filters from '@/components/Filters';
 
   export default {
     name: "Todos",
     components: {
-      TodoList, AddTodo, Loader
+      TodoList, AddTodo, Loader, Filters
     },
     data () {
       return {
@@ -74,5 +67,14 @@
 </script>
 
 <style scoped lang="scss">
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 
+  p {
+    font-size: 3rem;
+  }
 </style>

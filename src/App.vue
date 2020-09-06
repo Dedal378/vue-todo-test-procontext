@@ -1,7 +1,10 @@
+<!--suppress ALL -->
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <h1>My Todo App On Vue</h1>
+    <hr>
+    <Breadcrumb />
     <hr>
     <router-view />
   </div>
@@ -12,29 +15,29 @@
 </script>
 
 <style lang="scss">
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   #app {
-    max-width: 1280px;
+    width: clamp(320px, 100vw, 1200px);
     margin: 0 auto;
     color: var(--color-grey-blue);
     text-align: center;
-  }
 
-  img {
-    width: 150px;
-  }
+    img {
+      margin: 0 auto;
+      width: 150px;
+      &:hover {
+        transform: rotateY(180deg);
+      }
+    }
 
-  h1 {
-    margin-bottom: 3rem;
-  }
+    h1 {
+      //noinspection CssInvalidFunction
+      font-size: clamp(0.8rem, 7vw, 3rem);
+      margin-bottom: 3rem;
+    }
 
-  hr {
-    width: 100%;
-    color: var(--color-green);
+    hr {
+      width: 99%;
+      color: var(--color-green);
+    }
   }
 </style>
