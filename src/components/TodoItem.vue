@@ -3,6 +3,7 @@
     <div class="card-text">
       <div class="cover">
         <strong class="strong" :class="{'done': this.todo.completed}"> {{ index + 1 }} </strong>
+        <div class="back-image"></div>
       </div>
 
       <div class="title-total">
@@ -80,6 +81,7 @@
 
 <style scoped lang="scss">
   .card {
+    position: relative;
     display: block;
     margin: 1rem;
     padding: 0.2rem;
@@ -90,6 +92,7 @@
     background: #fff;
     border-radius: 25px;
     box-shadow: 0 5px 10px var(--color-shadow);
+    overflow: hidden;
 
     &:hover {
       box-shadow: 0 15px 20px var(--color-shadow);
@@ -98,21 +101,35 @@
   }
 
   .card h2 {
+    height: 100px;
     margin: 0;
-    padding: 0 1rem;
-    //noinspection CssInvalidFunction
+    padding: 0 0.5rem;
+    overflow: auto;
+    /*white-space: nowrap;*/
+    text-overflow: ellipsis;
+        //noinspection CssInvalidFunction
     font-size: clamp(0.5rem, 3vw, 1rem);
   }
 
   .cover {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-image: url("https://m.media-amazon.com/images/S/aplus-media/vc/cab6b08a-dd8f-4534-b845-e33489e91240._CR75,0,300,300_PT0_SX300__.jpg");
-    background-position: bottom center;
-    background-size: cover;
 
+    .back-image {
+      width: 150%;
+      height: 150%;
+      margin-top: -25px;
+      /*margin-left: -10px;*/
+      background: url(../assets/logo.png) -20px -20px / contain no-repeat;
+      transform: rotate(-45deg);
+      z-index: 0;
+    }
     .strong {
       display: flex;
       align-items: center;
@@ -124,6 +141,9 @@
       font-size: 1.3rem;
       border-radius: 50%;
       background: #fff;
+      box-shadow: 0 1px 5px var(--color-shadow);
+      z-index: 10;
+
 
       &.done {
         color: #ffffff;
@@ -141,7 +161,6 @@
   .card-text {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    min-height: 250px;
   }
 
   .card .desc {
@@ -157,9 +176,10 @@
   }
 
   .card svg {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin: 0 auto;
+    z-index: 1;
   }
 
   .icon-status {
