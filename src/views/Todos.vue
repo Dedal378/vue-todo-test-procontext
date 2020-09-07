@@ -25,6 +25,7 @@
 
       <Loader v-if="loading" />
       <TodoList
+          id="todo-1"
           v-else-if="todos.length"
           :todos="filteredTodos"
           @remove-todo="removeTodo"

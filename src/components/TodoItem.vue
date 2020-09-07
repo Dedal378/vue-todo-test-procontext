@@ -1,5 +1,11 @@
 <template>
-  <section class="card" draggable="true">
+  <section
+      :id="id"
+      class="card"
+      draggable
+      @dragstart="dragStart"
+      @dragover.stop
+  >
     <div class="card-text">
       <div class="cover">
         <strong class="strong" :class="{'done': this.todo.completed}"> {{ index + 1 }} </strong>
@@ -9,7 +15,7 @@
       <div class="title-total">
         <h2 v-show="!isEditing">{{ todo.title | upperCase }}</h2>
         <div v-show="isEditing" class="edit-form">
-          <textarea v-model="todo.title" rows="3"></textarea>
+          <label><textarea v-model="todo.title" rows="3"></textarea></label>
           <button @click="hideEdit" type="button">save</button>
         </div>
         <div class="actions">
@@ -57,6 +63,8 @@
         required: true,
       },
       index: Number,
+      id: String,
+      draggable: String
     },
     data () {
       return {
@@ -72,7 +80,14 @@
       },
       hideEdit () {
         this.isEditing = false
-      }
+      },
+      dragStart(ev) {
+        ev.dataTransfer.setData("card_id", ev.target.id);
+
+        setTimeout(() => {
+          ev.target.style.display = "none";
+        }, 0)
+      },
     },
     computed: {
       statusTodo () {
@@ -106,6 +121,7 @@
     border-radius: 25px;
     box-shadow: 0 5px 10px var(--color-shadow);
     overflow: hidden;
+    height: min-content;
 
     &:hover {
       box-shadow: 0 15px 20px var(--color-shadow);

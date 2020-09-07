@@ -1,6 +1,11 @@
 <template>
   <transition name="fade">
-    <section>
+    <section
+        class="todo-list__wrapper"
+        :id="id"
+        @dragover.prevent
+        @drop.prevent="drop"
+    >
       <TodoItem
           v-for="(todo, i) of todos"
           :todo="todo"
@@ -20,27 +25,36 @@
       TodoItem
     },
     props: {
-      todos: {
-        type: Array,
-      },
-      todosFinder: {
-        type: Array,
-      }
+      todos: Array,
+      todosFinder: Array,
+      id: String,
     },
     methods: {
       removeTodo (id) {
         this.$emit('remove-todo', id)
+      },
+      drop (ev) {
+        const data = ev.dataTransfer.getData("card_id");
+        const card = document.getElementById(data);
+        card.style.display = "block";
+        ev.target.appendChild(card);
+        ev.dataTransfer.clearData();
+      },
+      dateNow () {
+        return new Date.now().toString()
       }
     },
   }
 </script>
 
 <style scoped lang="scss">
-  section {
+  .todo-list__wrapper {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin: 1rem;
-
+    margin-bottom: 3rem;
+    width: 100%;
+    height: 100%;
   }
 </style>

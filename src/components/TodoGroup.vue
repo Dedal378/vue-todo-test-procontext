@@ -1,6 +1,7 @@
 <template>
   <section class="todo-group">
     <hr>
+
     <div class="todo-group__header">
       <h2>MAKE GROUP FOR TODOS</h2>
       <label for="todo-group__input"></label>
@@ -8,6 +9,7 @@
       <button @click="newTodosGroup">Make new Todo's group</button>
     </div>
     <hr>
+
     <div class="todo-group__container">
       <section
           v-for="(group, i) of todoGroups"
@@ -15,19 +17,20 @@
           class="todo-group__item"
       >
         <div class="left-col">
-          <h3>
-            GROUP NAME: {{ group.title }}
-          </h3>
+          <h3>GROUP NAME: {{ group.title }}</h3>
           <AddTodo @add-todo="addTodo" />
         </div>
-        <div class="right">
+
+        <div class="right-col">
           <TodoList
+              id="todo-2"
               v-if="todoItems.length"
               :todos="todoItems"
               @remove-todo="removeTodo"
           />
           <p v-else>No todos!</p>
         </div>
+
       </section>
     </div>
 
@@ -129,5 +132,10 @@
     padding: 10px;
     width: 100%;
     border-right: 1px solid #ccc;
+  }
+
+  .right-col {
+    width: 100%;
+    height: 100%;
   }
 </style>
