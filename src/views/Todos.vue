@@ -69,8 +69,8 @@
       addTodo (newTodo) {
         this.todos.push(newTodo)
       },
-      deleteGroup (id) {
-        this.todoGroups = this.todoGroups.filter(t => t.id !== id)
+      deleteGroup () {
+        this.todoGroups = []
       }
     },
     mounted () {
