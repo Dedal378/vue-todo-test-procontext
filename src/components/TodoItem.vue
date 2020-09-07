@@ -2,7 +2,7 @@
   <section
       :id="id"
       class="card"
-      draggable
+      draggable="true"
       @dragstart="dragStart"
       @dragover.stop
   >

@@ -36,13 +36,10 @@
       drop (ev) {
         const data = ev.dataTransfer.getData("card_id");
         const card = document.getElementById(data);
-        card.style.display = "block";
+        // card.style.display = "block";
         ev.target.appendChild(card);
         ev.dataTransfer.clearData();
       },
-      dateNow () {
-        return new Date.now().toString()
-      }
     },
   }
 </script>
@@ -51,10 +48,12 @@
   .todo-list__wrapper {
     display: flex;
     justify-content: center;
+    align-content: center;
     flex-wrap: wrap;
     margin: 1rem;
     margin-bottom: 3rem;
     width: 100%;
     height: 100%;
+    min-height: 300px;
   }
 </style>
