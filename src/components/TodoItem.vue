@@ -1,6 +1,6 @@
 <template>
   <section
-      :id="id"
+      :id="date"
       class="card"
       draggable="true"
       @dragstart="dragStart"
@@ -63,12 +63,11 @@
         required: true,
       },
       index: Number,
-      id: String,
-      draggable: String
     },
     data () {
       return {
         isEditing: false,
+        date: Date.now()
       }
     },
     methods: {
@@ -81,9 +80,8 @@
       hideEdit () {
         this.isEditing = false
       },
-      dragStart(ev) {
+      dragStart (ev) {
         ev.dataTransfer.setData("card_id", ev.target.id);
-
         setTimeout(() => {
           ev.target.style.display = "none";
         }, 0)

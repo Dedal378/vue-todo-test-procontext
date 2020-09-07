@@ -2,7 +2,7 @@
   <transition name="fade">
     <section
         class="todo-list__wrapper"
-        :id="id"
+        :id="date"
         @dragover.prevent
         @drop.prevent="drop"
     >
@@ -27,7 +27,11 @@
     props: {
       todos: Array,
       todosFinder: Array,
-      id: String,
+    },
+    data () {
+      return {
+        date: Date.now() + Math.round(Math.random() * 103)
+      }
     },
     methods: {
       removeTodo (id) {
@@ -36,9 +40,9 @@
       drop (ev) {
         const data = ev.dataTransfer.getData("card_id");
         const card = document.getElementById(data);
-        // card.style.display = "block";
+        card.style.display = "block";
         ev.target.appendChild(card);
-        ev.dataTransfer.clearData();
+        // ev.dataTransfer.clearData();
       },
     },
   }

@@ -23,7 +23,6 @@
 
         <div class="right-col">
           <TodoList
-              id="todo-2"
               v-if="todoItems.length"
               :todos="todoItems"
               @remove-todo="removeTodo"
