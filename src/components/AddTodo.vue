@@ -35,7 +35,6 @@
   form {
     display: flex;
     flex-direction: column;
-    /*max-width: 55%;*/
     //noinspection CssInvalidFunction
     width: clamp(310px, 100vw, 65%);
     padding: 20px;

@@ -32,6 +32,7 @@
       <p v-else>No todos!</p>
 
       <AddTodo @add-todo="addTodo" />
+      <TodoGroup />
     </div>
   </transition>
 </template>
@@ -40,11 +41,12 @@
   import TodoList from '@/components/TodoList';
   import AddTodo from '@/components/AddTodo';
   import Loader from '@/components/Loader';
+  import TodoGroup from '@/components/TodoGroup';
 
   export default {
     name: "Todos",
     components: {
-      TodoList, AddTodo, Loader,
+      TodoList, AddTodo, Loader, TodoGroup
     },
     data () {
       return {
