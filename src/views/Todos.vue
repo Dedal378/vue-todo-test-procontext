@@ -32,7 +32,11 @@
       <p v-else>No todos!</p>
 
       <AddTodo @add-todo="addTodo" />
-      <TodoGroup />
+      <TodoGroup
+          :todoGroups="todoGroups"
+          :todoItems="todoItems"
+          @delete-group="deleteGroup"
+      />
     </div>
   </transition>
 </template>
@@ -54,6 +58,8 @@
         loading: true,
         filter: 'all',
         search: '',
+        todoGroups: [{ id: 1, title: '1' }],
+        todoItems: [{ id: 1, title: '1', completed: true }],
       }
     },
     methods: {
@@ -62,6 +68,9 @@
       },
       addTodo (newTodo) {
         this.todos.push(newTodo)
+      },
+      deleteGroup (id) {
+        this.todoGroups = this.todoGroups.filter(t => t.id !== id)
       }
     },
     mounted () {

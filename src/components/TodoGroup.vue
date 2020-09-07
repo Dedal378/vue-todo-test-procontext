@@ -19,6 +19,16 @@
         <div class="left-col">
           <h3>GROUP NAME: {{ group.title }}</h3>
           <AddTodo @add-todo="addTodo" />
+          <button
+              @click="clearGroup"
+              type="button">
+            delete all cards
+          </button>
+          <button
+              @click="deleteGroup"
+              type="button">
+            delete group
+          </button>
         </div>
 
         <div class="right-col">
@@ -45,12 +55,14 @@
   export default {
     name: "TodoGroup",
     components: { AddTodo, TodoList, TodoItem, Loader },
+    props: {
+      todoGroups: Array,
+      todoItems: Array,
+    },
     data () {
       return {
         loading: true,
         todoTitle: '',
-        todoGroups: [{ id: 1, title: '1' }],
-        todoItems: [{ id: 1, title: '1', completed: true }],
       }
     },
     methods: {
@@ -69,6 +81,12 @@
       },
       removeTodo (id) {
         this.todoItems = this.todoItems.filter(t => t.id !== id)
+      },
+      clearGroup () {
+        return this.todoItems = []
+      },
+      deleteGroup (id) {
+        this.$emit('delete-group', id)
       },
     },
   }
